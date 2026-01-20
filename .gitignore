@@ -39,3 +39,24 @@
 
 # debug information files
 *.dwo
+# Markdown files
+*.md
+
+# Visual Studio
+.vs/
+
+# Build outputs
+[Bb]uild/
+[Bb]in/
+*.exe
+*.obj
+*.dll
+*.pdb
+*.ilk
+*.aps
+*.tlog
+*.log
+
+# Other
+*.user
+*.suo
