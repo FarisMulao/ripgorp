@@ -1,35 +1,29 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
 #include <filesystem>
+#include "search/FileScanner.h"
+#include "search/Matcher.h"
 
 void findMatches(const std::filesystem::path& filepath, const std::string& query) {
-	std::ifstream file(filepath);
-
-	if (!file.is_open()) {
-		std::cerr << "Error opening file: " << filepath << "\n";
+	ripgorp::FileScanner scanner(filepath);
+	if (!scanner.IsOpen()) {
+		std::cerr << "Failed to open file: " << filepath << "\n";
 		return;
 	}
-
+	ripgorp::Matcher matcher(query);
 	std::string line;
-	std::size_t lineNumber = 1;
-
-	while (std::getline(file, line)) {
-		if (line.find(query) != std::string::npos) {
-			std::cout << filepath << ":" << lineNumber << ": " << line << "\n";
+	int line_number = 0;
+	while (scanner.GetLine(line)) {
+		++line_number;
+		if (matcher.Matches(line)) {
+			std::cout << "Match found at line " << line_number << ": " << line << "\n";
 		}
-		++lineNumber;
 	}
 }
+
 
 int main() {
 	std::filesystem::path filepath = "../../../src/main.cpp";
 	std::string query = "std::cout";
-
-	std::cout << "Searching in: " << filepath << "\n";
-
-	std::cout << "working dir: " << std::filesystem::current_path() << "\n";
 
 	findMatches(filepath, query);
 

@@ -5,4 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(ripgorp src/main.cpp)
+add_executable(ripgorp
+    src/main.cpp
+    src/search/Matcher.cpp
+    src/search/FileScanner.cpp
+)
