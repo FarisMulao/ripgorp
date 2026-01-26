@@ -8,7 +8,7 @@
 namespace ripgorp {
 
 template <typename T>
-	requires std::moveable<T>;
+	requires std::movable<T>
 class BlockingQueue {
 public:
 	void Push(T value) {

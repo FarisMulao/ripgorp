@@ -9,4 +9,5 @@ add_executable(ripgorp
     src/main.cpp
     src/search/Matcher.cpp
     src/search/FileScanner.cpp
+    src/threading/ThreadPool.cpp
 )
